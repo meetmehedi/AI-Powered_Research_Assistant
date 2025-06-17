@@ -36,6 +36,8 @@ def auto_clean(df):
     df = df.dropna(axis=1, how='all')
     df = df.drop_duplicates()
     df.ffill(inplace=True)
+    df.bfill(inplace=True)
+
     return df
 
 def train_models(X, y, task):
