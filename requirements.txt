@@ -4,3 +4,15 @@ seaborn
 matplotlib
 scikit-learn
 openpyxl
+streamlit
+pandas
+seaborn
+matplotlib
+scikit-learn
+fpdf
+joblib
+openai
+
+# Optional (used if available)
+xgboost
+autosklearn
