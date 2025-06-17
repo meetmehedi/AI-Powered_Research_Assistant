@@ -49,3 +49,13 @@ if uploaded_file:
         st.success("✅ This looks like a classification task.")
     else:
         st.info("📈 This seems to be a regression problem.")
+
+import streamlit as st
+
+# Your Streamlit app code goes here...
+
+st.markdown("---")
+st.markdown("Developed by **Md. Mehedi Hasan**")
+st.caption("Developed by Md. Mehedi Hasan")
+
+
