@@ -35,7 +35,7 @@ st.caption("AI-Powered Research Assistant for Scientists")
 def auto_clean(df):
     df = df.dropna(axis=1, how='all')
     df = df.drop_duplicates()
-    df.ffill(inplace=True)
+    df.fillna(method='ffill', inplace=True)
    
 
     return df
