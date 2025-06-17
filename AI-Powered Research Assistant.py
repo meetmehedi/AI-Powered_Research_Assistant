@@ -56,6 +56,6 @@ import streamlit as st
 
 st.markdown("---")
 st.markdown("Developed by **Md. Mehedi Hasan @2025**")
-st.caption("Developed by Md. Mehedi Hasan")
+#st.caption("Developed by Md. Mehedi Hasan")
 
 
