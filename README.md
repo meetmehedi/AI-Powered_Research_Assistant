@@ -1,4 +1,5 @@
-# 🧠 AI-Powered Research Assistant
+# scigenie 🧠 
+AI-Powered Research Assistant
 
 Turn **datasets → discoveries** in minutes.  
 Upload your data ➜ automatic cleaning & EDA ➜ one-click AutoML (Random Forest, XGBoost, Auto-Sklearn) ➜ GPT-4 abstract ➜ downloadable PDF report ➜ Zotero‐ready references.
