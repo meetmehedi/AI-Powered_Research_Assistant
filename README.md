@@ -1,4 +1,4 @@
-# scigenie 🧠 
+# SciGenie 🧠 
 AI-Powered Research Assistant
 
 Turn **datasets → discoveries** in minutes.  
