@@ -28,7 +28,7 @@ import openai
 
 st.set_page_config(page_title="AI-Powered Research Assistant", layout="wide")
 
-st.title(" SciGene 🧠")
+st.title(" SciGenie 🧠")
 st.caption("AI-Powered Research Assistant for Scientists")
 
 # --- Helper Functions ---
