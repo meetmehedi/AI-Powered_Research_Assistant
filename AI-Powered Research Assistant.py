@@ -55,7 +55,7 @@ import streamlit as st
 # Your Streamlit app code goes here...
 
 st.markdown("---")
-st.markdown("Developed by **Md. Mehedi Hasan**")
+st.markdown("Developed by **Md. Mehedi Hasan @2025**")
 st.caption("Developed by Md. Mehedi Hasan")
 
 
