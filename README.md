@@ -3,7 +3,7 @@
 Turn **datasets → discoveries** in minutes.  
 Upload your data ➜ automatic cleaning & EDA ➜ one-click AutoML (Random Forest, XGBoost, Auto-Sklearn) ➜ GPT-4 abstract ➜ downloadable PDF report ➜ Zotero‐ready references.
 
-![screenshot](docs/demo.gif)
+<img width="1246" alt="Screenshot 2025-06-17 at 6 04 00 PM" src="https://github.com/user-attachments/assets/c85524c6-0f2d-4430-8d61-2ce7dcc79703" />
 
 ---
 
