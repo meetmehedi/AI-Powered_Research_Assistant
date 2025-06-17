@@ -7,8 +7,3 @@ xgboost
 openai
 joblib
 fpdf
-# Auto-sklearn dependencies
-numpy==1.23.5
-cython
-swig
-auto-sklearn==0.14.8
