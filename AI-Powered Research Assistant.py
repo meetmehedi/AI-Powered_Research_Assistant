@@ -11,8 +11,8 @@ from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 
 st.set_page_config(page_title="AI-Powered Research Assistant", layout="wide")
 
-st.title("SciGenie 🧠 AI-Powered Research Assistant")
-
+st.title("SciGenie")
+st.caption("🧠 AI-Powered Research Assistant")
 # Step 1: Upload Dataset
 uploaded_file = st.file_uploader("📂 Upload your dataset (CSV/Excel)", type=["csv", "xlsx"])
 if uploaded_file:
