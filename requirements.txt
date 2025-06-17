@@ -7,6 +7,4 @@ openpyxl
 fpdf
 joblib
 openai
-# Optional (used if available)
 xgboost
-autosklearn
