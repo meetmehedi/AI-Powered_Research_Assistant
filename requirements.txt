@@ -8,12 +8,4 @@ joblib>=1.2.0
 openpyxl>=3.1.0
 fpdf>=1.7.2
 scikit-learn>=1.3.0
-python-dotenv>=1.0.0  # For loading secrets from .env
-
-# --- Optional AutoML Libraries ---
-xgboost>=1.7.0          # For boosted tree models
-auto-sklearn>=0.15.0    # For automated ML pipelines
-pycaret>=3.0.0          # For quick AutoML setup (optional)
-
-# --- PDF Export ---
-reportlab>=4.0.0  # (Optional) Better PDF formatting if needed
+python-dotenv>=1.0.0
