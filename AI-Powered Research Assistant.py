@@ -7,7 +7,6 @@ st.set_page_config(
     layout="wide",
     page_icon="🧠"
 )
-
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
