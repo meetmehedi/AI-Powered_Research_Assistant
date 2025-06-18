@@ -183,6 +183,7 @@ def make_pdf(summary, abstract):
 
     return pdf.output(dest="S").encode("latin-1")
 
+
 # --- Main App ---
 uploaded_file = st.file_uploader("📂 Upload your dataset (CSV/Excel)", type=["csv", "xlsx"])
 if uploaded_file:
