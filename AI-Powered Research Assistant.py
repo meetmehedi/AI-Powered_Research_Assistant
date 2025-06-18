@@ -120,7 +120,7 @@ def train_models(X, y, task):
 def generate_abstract_with_deepseek(df, task, model_name, score):
     """Generate an abstract using DeepSeek's API"""
     if 'DEEPSEEK_API_KEY' not in st.secrets:
-        return "DeepSeek abstract not generated. Set DEEPSEEK_API_KEY environment variable."
+        return "DeepSeek abstract not generated. Please set DEEPSEEK_API_KEY in .streamlit/secrets.toml."
     
     try:
         api_key = st.secrets["DEEPSEEK_API_KEY"]
@@ -159,7 +159,7 @@ def generate_abstract_with_deepseek(df, task, model_name, score):
             return f"Error from DeepSeek API: {response.text}"
             
     except Exception as e:
-        return f"Error generating abstract: {str(e)}"
+        return f"DeepSeek API unreachable. Please check your internet or DNS settings.\n{str(e)}"
 
 def make_pdf(summary, abstract):
     """Create a PDF report"""
