@@ -228,6 +228,9 @@ if uploaded_file:
             df = pd.read_csv(uploaded_file)
         else:
             df = pd.read_excel(uploaded_file)
+
+        # Ensure all column names are valid strings
+        df.columns = [str(col) if col is not None else "Unnamed_Column" for col in df.columns]
         
         with st.spinner("🧹 Cleaning and preprocessing data..."):
             df = auto_clean(df)
