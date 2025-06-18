@@ -162,24 +162,20 @@ def generate_abstract_with_deepseek(df, task, model_name, score):
         return f"DeepSeek API unreachable. Please check your internet or DNS settings.\n{str(e)}"
 
 def make_pdf(summary, abstract):
-    """Create a PDF report"""
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font("Arial", size=12)
-    
-    # Add title
+
     pdf.set_font("Arial", "B", 16)
     pdf.cell(0, 10, "Research Report", ln=True, align="C")
     pdf.ln(10)
-    
-    # Add summary
+
     pdf.set_font("Arial", "B", 12)
     pdf.cell(0, 10, "Summary", ln=True)
     pdf.set_font("Arial", size=12)
     pdf.multi_cell(0, 10, summary)
     pdf.ln()
-    
-    # Add abstract
+
     pdf.set_font("Arial", "B", 12)
     pdf.cell(0, 10, "Abstract", ln=True)
     pdf.set_font("Arial", size=12)
