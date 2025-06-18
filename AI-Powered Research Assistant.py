@@ -4,7 +4,6 @@ import streamlit as st
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import io
 import joblib
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression, LinearRegression
@@ -53,7 +52,7 @@ def train_models(X, y, task):
             xgb_model.fit(X, y)
             results['XGBoost'] = (xgb_model, accuracy_score(y, xgb_model.predict(X)))
 
-        if autosklearn:
+        if autosklearn is not None:
             ask = autosklearn.classification.AutoSklearnClassifier()
             ask.fit(X, y)
             results['AutoSklearn'] = (ask, accuracy_score(y, ask.predict(X)))
@@ -68,7 +67,7 @@ def train_models(X, y, task):
             xgb_model.fit(X, y)
             results['XGBoost'] = (xgb_model, r2_score(y, xgb_model.predict(X)))
 
-        if autosklearn:
+        if autosklearn is not None:
             ask = autosklearn.regression.AutoSklearnRegressor()
             ask.fit(X, y)
             results['AutoSklearn'] = (ask, r2_score(y, ask.predict(X)))
@@ -77,22 +76,20 @@ def train_models(X, y, task):
     return best_model_name, results[best_model_name][0], results[best_model_name][1]
 
 def generate_abstract(df, task, model_name):
-    if 'OPENAI_API_KEY' in os.environ:
-        openai.api_key = os.environ['OPENAI_API_KEY']
-        prompt = f"""
-        Write an academic abstract for a research project based on the following:
-        - Dataset with columns: {list(df.columns)}
-        - Task type: {task}
-        - Model used: {model_name}
-        - Key insights from EDA and modeling.
-        Keep it within 150 words.
-        """
-        response = openai.ChatCompletion.create(
-            model="gpt-4",
-            messages=[{"role": "user", "content": prompt}]
-        )
-        return response['choices'][0]['message']['content']
-    return "GPT-4 abstract not generated. Set OPENAI_API_KEY."
+        if 'OPENAI_API_KEY' in os.environ:
+            openai.api_key = os.environ['OPENAI_API_KEY']
+            prompt = f"""Write an academic abstract for a research project based on the following:
+    - Dataset with columns: {list(df.columns)}
+    - Task type: {task}
+    - Model used: {model_name}
+    - Key insights from EDA and modeling.
+    Keep it within 150 words."""
+            response = openai.ChatCompletion.create(
+                model="gpt-4",
+                messages=[{"role": "user", "content": prompt}]
+            )
+            return response['choices'][0]['message']['content']
+        return "GPT-4 abstract not generated. Set OPENAI_API_KEY."
 
 def make_pdf(summary, abstract):
     pdf = FPDF()
@@ -100,13 +97,14 @@ def make_pdf(summary, abstract):
     pdf.set_font("Arial", size=12)
     pdf.multi_cell(0, 10, summary)
     pdf.ln()
-    pdf.set_font("Arial", 'B', 12)
+    pdf.set_font("Arial", "B", 12)
     pdf.cell(0, 10, "Abstract", ln=True)
     pdf.set_font("Arial", size=12)
     pdf.multi_cell(0, 10, abstract)
-    buffer = io.BytesIO()
-    pdf.output(buffer)
-    return buffer.getvalue()
+
+    # Return PDF as raw bytes so Streamlit can serve it directly
+    pdf_bytes = pdf.output(dest="S").encode("latin-1")
+    return pdf_bytes
 
 # --- Main App ---
 uploaded_file = st.file_uploader("📂 Upload your dataset (CSV/Excel)", type=["csv", "xlsx"])
@@ -126,7 +124,8 @@ if uploaded_file:
 
     st.subheader("📈 Exploratory Data Analysis")
     col = st.selectbox("Select numeric column for histogram:", df.select_dtypes(include='number').columns)
-    st.pyplot(sns.histplot(df[col], kde=True).figure)
+    fig = sns.histplot(df[col], kde=True).figure
+    st.pyplot(fig)
 
     st.subheader("📌 Correlation Heatmap")
     corr = df.select_dtypes(include='number').corr()
@@ -162,7 +161,8 @@ if uploaded_file:
             st.write(f"R² Score on Test Set: {r2_score(y_test, y_pred):.4f}")
 
         joblib.dump(model, "trained_model.pkl")
-        st.download_button("📥 Download Model (.pkl)", data=open("trained_model.pkl", "rb"), file_name="model.pkl")
+        with open("trained_model.pkl", "rb") as f:
+            st.download_button("📥 Download Model (.pkl)", data=f.read(), file_name="model.pkl")
 
         abstract = generate_abstract(df, task, model_name)
         st.subheader("📝 Abstract")
