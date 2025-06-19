@@ -484,7 +484,6 @@ if uploaded_file:
 
     except Exception as e:
         st.error(f"Error processing file: {str(e)}")
-
 # Footer
 st.markdown("---")
 st.markdown("Developed by **Md. Mehedi Hasan** | © 2025")
